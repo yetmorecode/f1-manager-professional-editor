@@ -1,7 +1,7 @@
 # F1 Manager Professional Modder's Guide
 
 1. Basic Datatypes
-    1. [Date](date.md)
+    1. [Date](basic/date.md)
 1. Data files
     1. [FAHRER.DAT (Drivers)](drivers.md)
     1. [TEAMS.DAT (Teams)](teams.md)

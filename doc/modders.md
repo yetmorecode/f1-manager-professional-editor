@@ -8,7 +8,7 @@
     1. [INGS.DAT (Engineers)](engineers.md)
     1. [SPONSOR.DAT (Sponsors)](sponsors.md)
     1. [MOTOREN.DAT (Engines)](engines.md)
-    1. [STRECKEN.DAT (Track Models)](track-models.md)
+    1. [STRECKEN.DAT (Track Models)](files/tracks.md)
     1. [STRINFO.DAT (Calendar)](calendar.md)
     1. [HISTORY.DAT (Season Statistics)](history.md)
     1. [Savegames](savegames.md)

@@ -12,6 +12,7 @@
     1. [STRINFO.DAT (Calendar)](files/calendar.md)
     1. [HISTORY.DAT (Season Statistics)](history.md)
     1. [Savegames](savegames.md)
+    1. [F1_e.rsc](rsc/format.md)
 1. [F1.exe](f1-exe.md)
     1. [Buildings & Staff](buildings.md)
     1. [Car Design Rules](rules.md)
@@ -20,5 +21,4 @@
 1. General game mechanics
     1. [Multiplayer](multiplayer.md)
     1. [Sprites](sprites.md)
-    1. [Color Palettes](palettes.md)
-    1. [PCX Images](pcx.md)
+

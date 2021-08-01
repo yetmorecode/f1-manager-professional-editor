@@ -1,6 +1,6 @@
 # Track Models 
 
-Track models are stored in the file ```STRECKEN.DAT``` in 568 byte blocks.
+Track models are stored in the file ```STRECKEN.DAT``` in 156.496 byte blocks.
 
 `track` structure:
 

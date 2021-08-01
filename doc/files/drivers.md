@@ -1,6 +1,8 @@
 # Drivers 
 
-Drivers are stored in the file ```FAHRER.DAT``` in 568 byte blocks of the following format:
+Drivers are stored in the file ```FAHRER.DAT``` in 568 byte blocks.
+
+`driver` structure:
 
 ```
 0   40  char[40]    fullname    

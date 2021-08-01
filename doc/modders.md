@@ -1,0 +1,20 @@
+# F1 Manager Professional Modder's Guide
+
+1. Basic Datatypes
+    1. [Date](date.md)
+1. Data files
+    1. [FAHRER.DAT (Drivers)](drivers.md)
+    1. [TEAMS.DAT (Teams)](teams.md)
+    1. [INGS.DAT (Engineers)](engineers.md)
+    1. [SPONSOR.DAT (Sponsors)](sponsors.md)
+    1. [MOTOREN.DAT (Engines)](engines.md)
+    1. [STRECKEN.DAT (Track Models)](track-models.md)
+    1. [STRINFO.DAT (Calendar)](calendar.md)
+1. [F1.exe](f1-exe.md)
+    1. [Buildings & Staff](buildings.md)
+    1. [Car Design Rules](rules.md)
+    1. [Race Points System](points.md)
+1. General game mechanics
+    1. [Sprites](sprites.md)
+    1. [Color Palettes](palettes.md)
+    1. [PCX Images](pcx.md)

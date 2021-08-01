@@ -17,7 +17,7 @@ The season calendar is stored in the file `STRINFO.DAT` in 508 byte blocks.
 72  4   int     
 76  4   int     
 80  40  char[40]    country 
-120 132 track_info_winner last_winner 
+120 132 calendar_winner last_winner 
 252 60  char[60]    feature1    
 312 60  char[60]    feature2    
 372 60  char[60]    feature3    

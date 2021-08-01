@@ -73,3 +73,51 @@ Drivers are stored in the file ```FAHRER.DAT``` in 568 byte blocks.
 0   4   int position    
 4   4   int status  (dropout reason, etc)
 ```
+
+`load_drivers` function (decompiled):
+
+```c
+void load_drivers(void)
+
+{
+  char *filename;
+  int length;
+  char *mode;
+  undefined4 *from;
+  driver *to;
+  byte bVar1;
+  undefined4 driver_buffer [142];
+  int i;
+  
+  bVar1 = 0;
+  filename = sprintf_data97e_filename("FAHRER.DAT");
+  fd_drivers = file_open(filename,mode);
+  i = 1;
+  while( true ) {
+    
+    // read a single driver (0x238) from file
+    length = file_read((byte *)driver_buffer,1,0x238,fd_drivers);
+    if (length == 0) break;
+    
+    // copy into global driver array
+    length = 0x8e;  (0x8e dwords = 0x238 bytes)
+    from = driver_buffer;
+    to = &drivers + i;
+    while (length != 0) {
+      length = length + -1;
+      *(undefined4 *)to->fullname = *from;
+      from = from + (uint)bVar1 * -2 + 1;
+      to = (driver *)((int)to + ((uint)bVar1 * -2 + 1) * 4);
+    }
+    
+    // init some fields
+    (&drivers)[i].field_0xcc = 1;
+    (&drivers)[i].participant_index = -0x1;
+    (&drivers)[i].team = 0;
+    
+    i = i + 1;
+  }
+  file_close(fd_drivers);
+  return;
+}
+```

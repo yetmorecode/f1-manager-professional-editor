@@ -7,7 +7,7 @@ The season calendar is stored in the file `STRINFO.DAT` in 508 byte blocks.
 ```
 0   24  char[24]    name    
 24  4   int region  
-28  20  date date    
+28  20  date race_date    
 48  4   int track_sprite_index  Created by retype action
 52  4   int     
 56  4   int laps_race   Created by retype action

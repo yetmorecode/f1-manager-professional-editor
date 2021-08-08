@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 
 import yetmorecode.f1mp.model.F1Model;
 import yetmorecode.f1mp.ui.tools.ToolFactory;
+import yetmorecode.f1mp.ui.tools.calendar.CalendarToolFactory;
 import yetmorecode.f1mp.ui.tools.drivers.DriversToolFactory;
 import yetmorecode.f1mp.ui.tools.engines.EnginesToolFactory;
 import yetmorecode.f1mp.ui.tools.exe.ExecutableToolFactory;
@@ -147,6 +148,7 @@ public class EditorFrame extends AppFrame {
 	    toolFactories.add(new TracksToolFactory(model));
 	    toolFactories.add(new SponsorsToolFactory(model));
 	    toolFactories.add(new HistoryToolFactory(model));
+	    toolFactories.add(new CalendarToolFactory(model));
 	    toolFactories.add(new ExecutableToolFactory(model));
 	    toolFactories.add(new ResourceExplorerToolFactory(model));
 	}

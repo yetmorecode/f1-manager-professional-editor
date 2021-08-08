@@ -29,6 +29,7 @@ The season calendar is stored in the file `STRINFO.DAT` in 508 byte blocks.
 ```
 
 `date` structure:
+
 [date](../basic/date.md)
 
 `calendar_winner` structure:

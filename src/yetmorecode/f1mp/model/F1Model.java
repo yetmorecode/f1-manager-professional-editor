@@ -3,6 +3,7 @@ package yetmorecode.f1mp.model;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import yetmorecode.f1mp.model.driver.Driver;
 import yetmorecode.f1mp.model.engine.Engine;
@@ -10,6 +11,7 @@ import yetmorecode.f1mp.model.engine.EngineResources;
 import yetmorecode.f1mp.model.engineer.Engineer;
 import yetmorecode.f1mp.model.sponsor.Sponsor;
 import yetmorecode.f1mp.model.team.Team;
+import yetmorecode.f1mp.model.track.TrackInfo;
 import yetmorecode.file.BinaryFileInputStream;
 import yetmorecode.file.exception.InvalidHeaderException;
 import yetmorecode.file.format.lx.LxExecutable;
@@ -37,6 +39,7 @@ public class F1Model {
 	public ArrayList<Engineer> engineers = new ArrayList<>();
 	public ArrayList<Engine> engines = new ArrayList<>();
 	public ArrayList<Sponsor> sponsors = new ArrayList<>();
+	public HashMap<Integer, TrackInfo> calendar = new HashMap<>();
 	
 	public LxExecutable exe;
 	
@@ -60,6 +63,7 @@ public class F1Model {
 		model.loadDrivers(model.driverFile);
 		model.loadEngineers(model.engineerFile);
 		model.loadTeams(model.teamFile);
+		model.loadCalendar(model.trackInfoFile);
 		
 		System.out.print(String.format("Loading F1.exe from %s.. ", model.exeFile.getAbsolutePath()));
 		try {
@@ -163,6 +167,23 @@ public class F1Model {
 			System.out.println(String.format("%d", engineers.size()));
 		} catch (IOException e) {
 			System.out.println(String.format("Could not load engineers from %s:", file.getAbsolutePath()));
+			e.printStackTrace();
+		}
+	}
+	
+	private void loadCalendar(File file) {
+		calendar = new HashMap<>();
+		try {
+			System.out.print(String.format("Loading calendar from %s.. ", file.getAbsolutePath()));
+			var input = new BinaryFileInputStream(file);
+			var number = 0;
+			while (input.available() > 0) {
+				calendar.put(number, TrackInfo.createFrom(input));
+				number++;
+			}
+			System.out.println(String.format("%d", calendar.size()));
+		} catch (IOException e) {
+			System.out.println(String.format("Could not load calendar from %s:", file.getAbsolutePath()));
 			e.printStackTrace();
 		}
 	}

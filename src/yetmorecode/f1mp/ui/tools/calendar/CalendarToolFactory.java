@@ -1,4 +1,4 @@
-package yetmorecode.f1mp.ui.tools.exe;
+package yetmorecode.f1mp.ui.tools.calendar;
 
 import java.io.IOException;
 
@@ -7,20 +7,20 @@ import javax.swing.JPanel;
 import yetmorecode.f1mp.model.F1Model;
 import yetmorecode.f1mp.ui.tools.AbstractToolFactory;
 
-public class ExecutableToolFactory extends AbstractToolFactory {
+public class CalendarToolFactory extends AbstractToolFactory {
 
-	public ExecutableToolFactory(F1Model directory) {
-		super(directory);
+	public CalendarToolFactory(F1Model model) {
+		super(model);
 	}
 
 	@Override
 	public String getMenuLabel() {
-		return "LE-executable (F1.exe)";
+		return "Season Calendar";
 	}
 
 	@Override
 	protected JPanel createJPanel() throws IOException {
-		return new LinearExecutablePanel(model.exeFile, model.exe);
+		return new CalendarPanel(model);
 	}
 
 }

@@ -12,8 +12,7 @@ public class PodiumResult {
 	public String third;
 	public String thirdShort;
 	
-	public static PodiumResult readFrom(BinaryFileInputStream input, long offset) throws IOException {
-		var old = input.position(offset);
+	public static PodiumResult createFrom(BinaryFileInputStream input) throws IOException {
 		var r = new PodiumResult();
 		r.first = input.readString(40).trim();
 		r.firstShort = input.readString(4).trim();
@@ -21,6 +20,12 @@ public class PodiumResult {
 		r.secondShort = input.readString(4).trim();
 		r.third = input.readString(40).trim();
 		r.thirdShort = input.readString(4).trim();
+		return r;
+	}
+	
+	public static PodiumResult createFrom(BinaryFileInputStream input, long offset) throws IOException {
+		var old = input.position(offset);
+		var r = createFrom(input);
 		input.position(old);
 		return r;
 	}

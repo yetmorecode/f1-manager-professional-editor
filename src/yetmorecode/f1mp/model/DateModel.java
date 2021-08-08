@@ -15,14 +15,19 @@ public class DateModel {
 	public int year;
 	public int millis;
 	
-	public static DateModel readFrom(BinaryFileInputStream input, long offset) throws IOException {
-		var old = input.position(offset);
+	public static DateModel readFrom(BinaryFileInputStream input) throws IOException {
 		var d = new DateModel();
 		d.hour = input.readInt();
 		d.day = input.readInt();
 		d.month = input.readInt();
 		d.year = input.readInt();
 		d.millis = input.readInt();
+		return d;
+	}
+	
+	public static DateModel readFrom(BinaryFileInputStream input, long offset) throws IOException {
+		var old = input.position(offset);
+		var d = readFrom(input);
 		input.position(old);
 		return d;
 	}

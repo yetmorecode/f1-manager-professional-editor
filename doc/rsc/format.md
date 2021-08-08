@@ -15,9 +15,10 @@ map of itself. It is impossible to reconstruct the resource without reverse engi
 
 So far I've seen three different resource types used:
 
-* [VGA color palettes](#vga-color-palettes)
-* [PCX encoded images](#pcx-images)
+* [.PAL VGA color palettes](#vga-color-palettes)
+* [.PCX images](#pcx-images)
 * [Transparent sprites (variable size)](#sprites)
+* [RIFF .WAV files](#wav-files)
 
 Byte order is little-endian, e.g. a dword of value 0x12345678 would be found as byte sequence "78 56 34 12" in the file, a word value 0x1234 as "34 12", etc.
 
@@ -59,7 +60,7 @@ Below is an decompiled and annotated excerpt from the code used for loading pale
 
 The full function is quite more complex and seems to handle a lot of dynamic edge cases I've not been able to fully understand yet.
 
-## PCX encoded images
+## PCX images
 
 Note: Turns out this is just [PCX file format](http://www.shikadi.net/moddingwiki/PCX_Format).
 
@@ -117,6 +118,10 @@ The black area in the lower left corner of the poster asset will actually not be
 Some more examples of this technique used (with more wrong palettes ;)). The black areas will actually not be drawn on the screen:
 
 ![Alt text](tileset_skip2.png?raw=true "Tileset Loading Code")
+
+## Sprites
+
+## WAV files
 
 ## Other assets
 

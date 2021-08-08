@@ -6,8 +6,15 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.Line;
+import javax.sound.sampled.LineEvent;
+import javax.sound.sampled.LineListener;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -22,6 +29,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeSelectionModel;
 
+import yetmorecode.f1mp.model.rsc.AudioResource;
 import yetmorecode.f1mp.model.rsc.ResourceDefinition;
 import yetmorecode.f1mp.model.rsc.SpriteResource;
 import yetmorecode.f1mp.ui.components.filemap.FileMapPanel;
@@ -149,6 +157,32 @@ public class ResourceExplorerPanel extends JPanel implements TreeSelectionListen
 				var sprite = SpriteResource.createFrom(input, r.getOffset(), p.palette.colors);
 				var v = new SpriteImagePanel(sprite);
 				setResourceContent(r, v);
+			} else if (r.getType() == ResourceDefinition.Type.TYPE_SOUND) {
+				var input = new BinaryFileInputStream(file);
+				var sound = AudioResource.createFrom(input, r.getOffset());
+				try
+			    {
+			        final Clip clip = (Clip)AudioSystem.getLine(new Line.Info(Clip.class));
+
+			        clip.addLineListener(new LineListener()
+			        {
+			            @Override
+			            public void update(LineEvent event)
+			            {
+			                if (event.getType() == LineEvent.Type.STOP)
+			                    clip.close();
+			            }
+			        });
+
+			        InputStream targetStream = new ByteArrayInputStream(sound.data);
+			        clip.open(AudioSystem.getAudioInputStream(targetStream));
+			        clip.start();
+			    }
+			    catch (Exception exc)
+			    {
+			        exc.printStackTrace(System.out);
+			    }
+				setResourceContent(r, new JPanel());
 			}
 		} catch (IOException e1) {
 			e1.printStackTrace();
@@ -242,6 +276,15 @@ public class ResourceExplorerPanel extends JPanel implements TreeSelectionListen
 	private void defineResources() {
 		
 		definePCX(0xa76d4d, "mainmenu.background",  0x1014d36, new long[] { 0x1 });
+		
+		resources.add(new ResourceDefinition(0x207aaf1, "sound teststand running", ResourceDefinition.Type.TYPE_SOUND));
+		resources.add(new ResourceDefinition(0x1dd3a41, "sound b", ResourceDefinition.Type.TYPE_SOUND));
+		resources.add(new ResourceDefinition(0x1de78b0, "sound c", ResourceDefinition.Type.TYPE_SOUND));
+		resources.add(new ResourceDefinition(0x1d88424, "sound d", ResourceDefinition.Type.TYPE_SOUND));
+		resources.add(new ResourceDefinition(0x1d46ab7, "sound e", ResourceDefinition.Type.TYPE_SOUND));
+		resources.add(new ResourceDefinition(0x1dbdf40, "sound f", ResourceDefinition.Type.TYPE_SOUND));
+		
+		
 		
 		resources.add(new ResourceDefinition(0x103c56e, "mainmenu.logo", 		ResourceDefinition.Type.TYPE_SPRITE, 0x1014d36));
 		
